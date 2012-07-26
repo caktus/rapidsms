@@ -85,18 +85,16 @@ class EventSchedule(models.Model):
     def __unicode__(self):
         def _set_to_string(items, conversion_dict=None):
             if len(items) > 0 and items != '*':
-                if conversion_dict is not None:
-                    return ", ".join((unicode(conversion_dict[i]) for i in items))
-                else:
-                    return ", ".join((unicode(i) for i in items))
-            else:
-                return 'All'
+                conv_items = (unicode(conversion_dict[i]) for i in items) \
+                    if conversion_dict else (unicode(i) for i in items)
+                return u', '.join(conv_items)
+            return u'All'
         months = _set_to_string(self.months, MONTHS)
         days_of_month = _set_to_string(self.days_of_month)
         days_of_week = _set_to_string(self.days_of_week, WEEKDAYS_ABBR)
         hours = _set_to_string(self.hours)
         minutes = _set_to_string(self.minutes)
-        return "%s: Months:(%s), Days of Month:(%s), Days of Week:(%s), Hours:(%s), Minutes:(%s)" % \
+        return u"%s: Months:(%s), Days of Month:(%s), Days of Week:(%s), Hours:(%s), Minutes:(%s)" % \
             (self.callback, months, days_of_month, days_of_week, hours, minutes)
             
     def __init__(self, *args, **kwargs):

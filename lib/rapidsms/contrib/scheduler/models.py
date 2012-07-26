@@ -83,13 +83,13 @@ class EventSchedule(models.Model):
         return unicode(self).encode('utf-8')
     
     def __unicode__(self):
-        def _set_to_string(set, conversion_dict=None):
-            if len(set)>0:
+        def _set_to_string(items, conversion_dict=None):
+            if len(items) > 0 and items != '*':
                 if conversion_dict is not None:
-                    return ", ".join( [unicode(conversion_dict[m]) for m in set] )
+                    return ", ".join((unicode(conversion_dict[i]) for i in items))
                 else:
-                    return ", ".join( [unicode(m) for m in set] )
-            else: 
+                    return ", ".join((unicode(i) for i in items))
+            else:
                 return 'All'
         months = _set_to_string(self.months, MONTHS)
         days_of_month = _set_to_string(self.days_of_month)
@@ -97,7 +97,7 @@ class EventSchedule(models.Model):
         hours = _set_to_string(self.hours)
         minutes = _set_to_string(self.minutes)
         return "%s: Months:(%s), Days of Month:(%s), Days of Week:(%s), Hours:(%s), Minutes:(%s)" % \
-            ( self.callback, months, days_of_month, days_of_week, hours, minutes )
+            (self.callback, months, days_of_month, days_of_week, hours, minutes)
             
     def __init__(self, *args, **kwargs):
         # these 3 lines allow users to create eventschedules from arrays

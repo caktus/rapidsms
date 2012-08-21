@@ -9,12 +9,12 @@ import Queue
 
 from django.dispatch import Signal
 
-from ..log.mixin import LoggerMixin
-from ..backends.base import BackendBase
-from ..apps.base import AppBase
-from ..conf import settings
+from rapidsms.log.mixin import LoggerMixin
+from rapidsms.backends.base import BackendBase
+from rapidsms.apps.base import AppBase
+from rapidsms.conf import settings
 
-from .base import BaseRouter
+from rapidsms.router.base import BaseRouter
 
 class LegacyRouter(BaseRouter):
     """

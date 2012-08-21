@@ -5,7 +5,7 @@
 To use the emails backend, one needs to append 'email' to the list of 
 available backends, like so:
 
-    "email" :          {"ENGINE":  "rapidsms.backends.email", 
+    "email" :          {"ENGINE":  "rapidsms.contrib.legacy_router.backends.email", 
                         "smtp_host": "smtp.gmail.com",
                         "smtp_port": 587,
                         "imap_host": "imap.gmail.com",
@@ -24,12 +24,12 @@ result in an exception being thrown.
 """
 
 from __future__ import absolute_import
-from .base import BackendBase
 import imaplib
 import time
 import smtplib
 import re
 
+from rapidsms.backends.base import BackendBase
 
 from datetime import datetime
 from email import message_from_string

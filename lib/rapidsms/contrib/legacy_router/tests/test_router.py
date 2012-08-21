@@ -5,7 +5,7 @@ from nose.tools import assert_equals
 
 from rapidsms.apps.base import AppBase
 from rapidsms.backends.base import BackendBase
-from rapidsms.router.legacy import LegacyRouter
+from rapidsms.contrib.legacy_router.router import LegacyRouter
 
 
 def test_legacy_router_starts_and_stops_apps_and_backends():

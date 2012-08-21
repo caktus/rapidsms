@@ -9,15 +9,18 @@ from rapidsms.contrib.legacy_router.router import LegacyRouter
 
 
 def test_legacy_router_starts_and_stops_apps_and_backends():
+
     class MockApp(AppBase):
         start_called = False
         stop_called = False
 
         def start(self):
             self.start_called = True
+            AppBase.start(self)
 
         def stop(self):
             self.stop_called = True
+            AppBase.stop(self)
 
     class MockBackend(BackendBase):
         start_called = False
